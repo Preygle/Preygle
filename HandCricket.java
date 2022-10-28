@@ -46,7 +46,7 @@ import java.util.*;
         System.out.println("Press 1 for batting");
         System.out.println("Press 2 for bowling");
         int sw=ob.nextInt();
-        int count=0,countBot=0;      
+        int count=0,countBot=0,ch=0;      
         switch(sw)
         {
             case 1:
@@ -56,45 +56,62 @@ import java.util.*;
                     count=count+temp;
                     System.out.println("User score is :"+count);
                 }
-                System.out.println("User OUT!Bot's turn");
+                System.out.println("User OUT!Your score is :"+count+" Bot's turn");
+                System.out.println("----------------------------------");
                 while(User()!=Run())
                 {
+                    System.out.println("Bot chose :"+temp1);
                     countBot=countBot+temp1;
                     System.out.println("Bot score is :"+countBot);
                     if(countBot>count)
-                    break;
+                    {
+                      ch=1;        
+                      break;
+                    }
                 }
-                System.out.println("Bot OUT!RESULTS ARE BELOW");
-            }
+                    if(ch==1)
+                    System.out.println("Score reached \n RESULTS ARE BELOW");
+                System.out.println("Bot OUT! Bot's score is :"+countBot+"\n RESULTS ARE BELOW");
+              }
             break;
             case 2:
             {
                 while(User()!=Run())
                 {
+                    System.out.println("Bot chose :"+temp1);
                     countBot=countBot+temp1;
-                    System.out.println("Bot score is :"+countBot);
+                    System.out.println(" Bot's score is :"+countBot);
                 }
-                System.out.println("Bot OUT!User's turn");
+                System.out.println("Bot chose :"+temp1);
+                System.out.println("Bot OUT! Bot's score is :"+countBot+" User's turn");
+                System.out.println("------------------------");
                  while(User()!=Run())
                 {
                     count=count+temp;
                     System.out.println("User score is :"+count);
                     if(countBot<count)
+                    {
+                        ch=1;
                     break;
                 }
-                System.out.println("User OUT!RESULTS ARE BELOW");
-            }
+              }
+                if(ch==1)
+                System.out.println("Score reached \n RESULTS ARE BELOW");
+                System.out.println("User OUT!Your score is :"+count+"\n RESULTS ARE BELOW");
+            
+          }
             break;
             default:
-            System.out.println("-----------------------");
+            System.out.println("INVALID INPUT");
         }
-        
+        System.out.println("User's score:\t Bot's score:");
+        System.out.println(count+"\t \t"+countBot);
         if(count>countBot)
-        System.out.println("User is winner");
+        System.out.println("User won by "+(count-countBot)+" runs");
         else if(count==countBot)
         System.out.println("DRAW");
         else
-        System.out.println("Bot is winner");
+        System.out.println("Bot won by "+(countBot-count)+" runs");
         System.out.println("-------------------------------");
         
     }
